@@ -1,0 +1,46 @@
+/* ログインフォーム/アカウント作成フォーム */
+.authorization_head {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+.authorization {
+    display: block;
+    margin: 0 auto 50px auto;
+    width: 400px;
+    border :solid 1px #707070;
+    border-radius: 0.2em;
+}
+.authorization > .authorization_form > form > .title {
+    font-size: 125%;
+    text-shadow:0px 0px 2px #303030;
+    margin-bottom:15px;
+    padding: 10px 0 20px 0;
+    text-align: center;
+    border-bottom: solid 1px #cbcbcb;
+}
+.authorization > .authorization_form {
+    margin : 0 auto;
+    padding: 15px;
+    border-bottom: solid 1px #cbcbcb;
+}
+.authorization > .authorization_navi {
+    margin : 0 auto;
+    text-align: center;
+    padding: 10px 15px;
+}
+.authorization > .authorization_navi > .authorization_text {
+    padding: 10px 0;
+    font-size: 85%;
+    text-shadow:0px 0px 2px #707070;
+}
+.authorization > .authorization_navi > .authorization_link {
+    display: inline-block;
+    font-size: 85%;
+    margin: 5px 0;
+    padding:10px;
+    border-radius: 0.2em;
+    color:#333399;
+    cursor: pointer;
+}
