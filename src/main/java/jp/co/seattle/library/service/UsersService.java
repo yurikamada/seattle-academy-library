@@ -31,7 +31,7 @@ public class UsersService {
                 + userInfo.getEmail()
                 + "','"
                 + userInfo.getPassword()
-                + "',sysdate(),sysdate()" + ")";
+                + "',now(),now()" + ")";
 
         jdbcTemplate.update(sql);
     }

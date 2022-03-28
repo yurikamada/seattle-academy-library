@@ -26,7 +26,6 @@ import jp.co.seattle.library.config.MinioConfig;
 public class ThumbnailService {
     final static Logger logger = LoggerFactory.getLogger(ThumbnailService.class);
 
-    private static final String S3_OBJECT_THUMBNAILS = "thumbnails/";
     @Autowired
     private MinioClient minioClient;
     @Autowired
@@ -53,10 +52,10 @@ public class ThumbnailService {
         // S3にサムネイル画像をアップロード
         InputStream inputStream = file.getInputStream();
         ObjectWriteResponse owr = minioClient.putObject(
-                PutObjectArgs.builder().bucket(minioConfig.getMinioInfo("s3.bucket-name"))
-                        .object(S3_OBJECT_THUMBNAILS + fileName)
-                        .stream(
-                                inputStream, -1, 10485760)
+                PutObjectArgs.builder()
+                        .bucket(minioConfig.getMinioInfo("s3.bucket-name"))
+                        .object(fileName)
+                        .stream(inputStream, -1, 10485760)
                         .build());
 
         return fileName;
@@ -74,7 +73,7 @@ public class ThumbnailService {
                 GetPresignedObjectUrlArgs.builder()
                         .method(Method.GET)
                         .bucket(minioConfig.getMinioInfo("s3.bucket-name"))
-                        .object(S3_OBJECT_THUMBNAILS + fileName)
+                        .object(fileName)
                         .build());
 
         return url;

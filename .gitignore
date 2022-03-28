@@ -8,3 +8,4 @@ target/classes/jp/co/seattle/library/**/*
 *.log
 
 
+/target/

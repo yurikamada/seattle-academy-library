@@ -69,8 +69,8 @@ public class BooksService {
                 + bookInfo.getTitle() + "','" + bookInfo.getAuthor() + "','" + bookInfo.getPublisher() + "','"
                 + bookInfo.getThumbnailName() + "','"
                 + bookInfo.getThumbnailUrl() + "',"
-                + "sysdate(),"
-                + "sysdate())";
+                + "now(),"
+                + "now())";
 
         jdbcTemplate.update(sql);
     }
