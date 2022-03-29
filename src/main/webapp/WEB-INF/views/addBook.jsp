@@ -14,7 +14,6 @@
 <link href="<c:url value="/resources/css/home.css" />" rel="stylesheet" type="text/css">
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="resources/js/thumbnail.js"></script>
-<script src="resources/js/addBtn.js"></script>
 </head>
 <body class="wrapper">
     <header>
