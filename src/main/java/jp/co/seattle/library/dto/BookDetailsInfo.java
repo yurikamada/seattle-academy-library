@@ -24,7 +24,6 @@ public class BookDetailsInfo {
 
     private String thumbnailName;
 
-
     public BookDetailsInfo() {
 
     }
