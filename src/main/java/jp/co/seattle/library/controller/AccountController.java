@@ -56,7 +56,6 @@ public class AccountController {
         UserInfo userInfo = new UserInfo();
         userInfo.setEmail(email);
 
-
         // TODO バリデーションチェック、パスワード一致チェック実装
 
         userInfo.setPassword(password);
