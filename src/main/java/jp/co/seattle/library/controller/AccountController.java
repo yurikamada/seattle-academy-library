@@ -1,5 +1,4 @@
 package jp.co.seattle.library.controller;
-
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -50,19 +49,41 @@ public class AccountController {
             @RequestParam("passwordForCheck") String passwordForCheck,
             Model model) {
         // デバッグ用ログ
-        logger.info("Welcome createAccount! The client locale is {}.", locale);
+        logger.info("Welcome createAccount! The client locale is {}.");
 
         // パラメータで受け取った書籍情報をDtoに格納する。
         UserInfo userInfo = new UserInfo();
         userInfo.setEmail(email);
+        logger.info(password);
 
         // TODO バリデーションチェック、パスワード一致チェック実装
+        if (password.length() >=8 && password.matches("^[0-9a-zA-Z]+$")) {
+        	
+        	logger.info(password);
+        	//パスワード一致チェック
+           if  (password.equals(passwordForCheck)) {
+           userInfo.setPassword(password);
+           usersService.registUser(userInfo);
 
-        userInfo.setPassword(password);
-        usersService.registUser(userInfo);
+           model.addAttribute("bookList", booksService.getBookList());
+           return "login";
+           
+           } else {
+        	   
+        	model.addAttribute("errorPassword", "パスワードが一致しません。");
 
-        model.addAttribute("bookList", booksService.getBookList());
-        return "home";
+    	   return "createAccount";
+    	   
+           }  
+        
+        } else {
+        
+        	model.addAttribute("errorPassword", "パスワードを半角英数字8字以上で設定してください");
+        	
+    	   return "createAccount";
+       }
+
+      
     }
 
 }
