@@ -32,7 +32,8 @@ public class BooksService {
 	public List<BookInfo> getBookList() {
 
 		// TODO 取得したい情報を取得するようにSQLを修正
-		List<BookInfo> getedBookList = jdbcTemplate.query("select id,title,thumbnail_url,author,publisher,publish_date from books order by title ASC",
+		List<BookInfo> getedBookList = jdbcTemplate.query(
+				"select id,title,thumbnail_url,author,publisher,publish_date from books order by title",
 				new BookInfoRowMapper());
 
 		return getedBookList;
@@ -67,4 +68,17 @@ public class BooksService {
 
 		jdbcTemplate.update(sql);
 	}
+
+	/**
+	 * 書籍を削除する
+	 * 
+	 * @param bookId 書籍ID
+	 */
+
+	public void deleteBook(Integer bookId) {
+		// TODO 自動生成されたメソッド・スタブ
+		String sql = "DELETE FROM books WHERE id = " + bookId + ";";
+		jdbcTemplate.update(sql);
+	}
+
 }
