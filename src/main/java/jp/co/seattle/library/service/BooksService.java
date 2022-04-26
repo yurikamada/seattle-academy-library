@@ -33,7 +33,7 @@ public class BooksService {
 
 		// TODO 取得したい情報を取得するようにSQLを修正
 		List<BookInfo> getedBookList = jdbcTemplate.query(
-				"select id,title,thumbnail_url,author,publisher,publish_date from books order by title",
+				"select id,title,thumbnail_url,author,publisher,publish_date,isbn,explanatory_text from books order by title",
 				new BookInfoRowMapper());
 
 		return getedBookList;
@@ -62,9 +62,11 @@ public class BooksService {
 	 */
 	public void registBook(BookDetailsInfo bookInfo) {
 
-		String sql = "INSERT INTO books (title, author,publisher,thumbnail_name,thumbnail_url,reg_date,upd_date) VALUES ('"
+		String sql = "INSERT INTO books (title, author,publisher,publish_date,isbn,explanatory_text,thumbnail_name,thumbnail_url,reg_date,upd_date) VALUES ('"
 				+ bookInfo.getTitle() + "','" + bookInfo.getAuthor() + "','" + bookInfo.getPublisher() + "','"
-				+ bookInfo.getThumbnailName() + "','" + bookInfo.getThumbnailUrl() + "'," + "now()," + "now())";
+				+ bookInfo.getPublishDate() + "','"+ bookInfo.getIsbn() + "','" + bookInfo.getExplanatory_text()+ "','"  
+				+ bookInfo.getThumbnailName() + "','" + bookInfo.getThumbnailUrl() + "'," 
+				+ "'now()'," + "'now()');";
 
 		jdbcTemplate.update(sql);
 	}
@@ -79,6 +81,17 @@ public class BooksService {
 		// TODO 自動生成されたメソッド・スタブ
 		String sql = "DELETE FROM books WHERE id = " + bookId + ";";
 		jdbcTemplate.update(sql);
+	}
+	
+	/**
+	 * 最新の書籍情報を取得する 
+	 * 
+	 * @param bookId 書籍ID
+	 */
+	public int MaxId() {
+	String sql = "SELECT MAX(id) FROM books";
+	int MaxId = jdbcTemplate.queryForObject(sql,int.class);
+	return MaxId;
 	}
 
 }
