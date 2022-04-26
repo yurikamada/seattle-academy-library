@@ -84,9 +84,9 @@ public class BooksService {
 	}
 
 	/**
-	 * 最新の書籍情報を取得する
+	 * 最新の書籍IDを取得する
 	 * 
-	 * @param MaxId 最新の書籍ID
+	 * @return MaxId 最新の書籍ID
 	 */
 	public int MaxId() {
 		String sql = "SELECT MAX(id) FROM books";

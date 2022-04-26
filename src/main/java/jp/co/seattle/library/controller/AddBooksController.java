@@ -89,7 +89,7 @@ public class AddBooksController {
 		// バリデーションチェック
 		boolean brank = title.isEmpty() || author.isEmpty() || publisher.isEmpty() || publishDate.isEmpty();
 		boolean date = publishDate.length() != 8 && !(publishDate.matches("^[0-9]$"));
-		boolean isbnn = !isbn.isEmpty() && !isbn.matches("^[0-9]{10}|[0-9]{13}$");
+		boolean isbn_check = !isbn.isEmpty() && !isbn.matches("^[0-9]{10}|[0-9]{13}$");
 		
 		// 必須項目が入力されているかどうか
 		if (brank) {
@@ -102,11 +102,11 @@ public class AddBooksController {
 		}
 
 		// isbnが入力されているか
-		if (isbnn) {
+		if (isbn_check) {
 			model.addAttribute("errorMessage_isbn", "ISBNの桁数または半角数字が正しくありません。");
 		}
 
-		if (brank || date || isbnn) {
+		if (brank || date || isbn_check) {
 			model.addAttribute("bookInfo", bookInfo);
 			return "addBook";
 		}
