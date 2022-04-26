@@ -64,9 +64,9 @@ public class BooksService {
 
 		String sql = "INSERT INTO books (title, author,publisher,publish_date,isbn,explanatory_text,thumbnail_name,thumbnail_url,reg_date,upd_date) VALUES ('"
 				+ bookInfo.getTitle() + "','" + bookInfo.getAuthor() + "','" + bookInfo.getPublisher() + "','"
-				+ bookInfo.getPublishDate() + "','"+ bookInfo.getIsbn() + "','" + bookInfo.getExplanatory_text()+ "','"  
-				+ bookInfo.getThumbnailName() + "','" + bookInfo.getThumbnailUrl() + "'," 
-				+ "'now()'," + "'now()');";
+				+ bookInfo.getPublishDate() + "','" + bookInfo.getIsbn() + "','" + bookInfo.getExplanatory_text()
+				+ "','" + bookInfo.getThumbnailName() + "','" + bookInfo.getThumbnailUrl() + "'," + "'now()',"
+				+ "'now()');";
 
 		jdbcTemplate.update(sql);
 	}
@@ -82,16 +82,16 @@ public class BooksService {
 		String sql = "DELETE FROM books WHERE id = " + bookId + ";";
 		jdbcTemplate.update(sql);
 	}
-	
+
 	/**
-	 * 最新の書籍情報を取得する 
+	 * 最新の書籍情報を取得する
 	 * 
-	 * @param bookId 書籍ID
+	 * @param MaxId 最新の書籍ID
 	 */
 	public int MaxId() {
-	String sql = "SELECT MAX(id) FROM books";
-	int MaxId = jdbcTemplate.queryForObject(sql,int.class);
-	return MaxId;
+		String sql = "SELECT MAX(id) FROM books";
+		int MaxId = jdbcTemplate.queryForObject(sql, int.class);
+		return MaxId;
 	}
 
 }
