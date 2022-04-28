@@ -94,4 +94,20 @@ public class BooksService {
 		return MaxId;
 	}
 
+	/**
+	 * 書籍を編集する
+	 * 
+	 * @parm bookInfo 書籍情報
+	 */
+	public void updateBook(BookDetailsInfo bookInfo) {
+		// TODO 自動生成されたメソッド・スタブ
+		String sql = "UPDATE books SET title = '" + bookInfo.getTitle() + "'," + "author = '" + bookInfo.getAuthor()
+				+ "'," + "publisher = '" + bookInfo.getPublisher() + "'," + "publish_date = '"
+				+ bookInfo.getPublishDate() + "'," + "isbn = '" + bookInfo.getIsbn() + "'," + "explanatory_text = '"
+				+ bookInfo.getExplanatory_text() + "'," + "upd_date = now() WHERE id ='" + bookInfo.getBookId() + "';";
+
+		jdbcTemplate.update(sql);
+
+	}
+
 }
