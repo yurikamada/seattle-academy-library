@@ -71,9 +71,7 @@ public class BulkBooksController {
 
 					if (brank || date || isbn_check) {
 						errorLine.add("<p>"+count + "行目の書籍登録時にエラーが発生しました。"+"</p>");
-					}
-
-					if (!brank || !date || !isbn_check) {
+					} else {
 						booksList.add(split);
 					}
 				}
