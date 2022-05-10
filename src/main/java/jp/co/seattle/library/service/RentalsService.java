@@ -28,6 +28,7 @@ public class RentalsService {
 	 * 貸出書籍の情報取得
 	 * 
 	 * @param bookID 書籍ID
+	 * @return rentID 貸出書籍の書籍ID
 	 */
 	public int getRentInfo(int bookId) {
 		// SQL生成
