@@ -45,6 +45,9 @@
                 <c:if test="${!empty errorMessage_rent}">
                     <div class="error">${errorMessage_rent}</div>
                 </c:if>
+                <c:if test="${!empty errorMessage_return}">
+                    <div class="error">${errorMessage_return}</div>
+                </c:if>
             </div>
             <div class="content_right">
                 <div>
@@ -77,7 +80,9 @@
             <form method="post" action="rentalBook">
                 <button type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_rentBook">借りる</button>
             </form>
-            <button type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_returnBook">返す</button>
+            <form method="post" action="returnBook">
+                <button type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_returnBook">返す</button>
+            </form>
             <form method="post" action="editBook">
                 <button type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_editBook">編集</button>
             </form>
