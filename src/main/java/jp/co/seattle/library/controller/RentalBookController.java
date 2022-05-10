@@ -38,11 +38,10 @@ public class RentalBookController {
 		if (rentalsService.getRentInfo(bookId) == 0) {
 			rentalsService.rentalsbook(bookId);
 		} else {
-			model.addAttribute("errorMessage_rent", "貸出し済みです。");
+			model.addAttribute("errorMessage_rent_return", "貸出し済みです。");
 		}
 
 		model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));
 		return "details";
 	}
-
 }

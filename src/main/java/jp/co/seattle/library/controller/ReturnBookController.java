@@ -35,7 +35,7 @@ public class ReturnBookController {
 		logger.info("Welcome return! The client locale is {}.", locale);
 
 		if (rentalsService.getRentInfo(bookId) == 0) {
-			model.addAttribute("errorMessage_return", "貸出しされていません。");
+			model.addAttribute("errorMessage_rent_return", "貸出しされていません。");
 		} else {
 			rentalsService.returnBook(bookId);
 		}
