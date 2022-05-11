@@ -43,12 +43,15 @@ public class BooksService {
 	 * 書籍IDに紐づく書籍詳細情報を取得する
 	 *
 	 * @param bookId 書籍ID
+	 * @param rentId 貸出書籍のID
 	 * @return 書籍情報
 	 */
 	public BookDetailsInfo getBookInfo(int bookId) {
 
 		// JSPに渡すデータを設定する
-		String sql = "SELECT * FROM books where id = " + bookId;
+		String sql = "select books.id ,books.title ,books.author ,books.publisher ,books.publish_date ,books.thumbnail_url ,books.thumbnail_name ,"
+				+ "books.reg_date ,books.upd_date ,books.isbn ,books.explanatory_text ,rentals.book_id from books left join rentals "
+				+ "on books.id = rentals.book_id WHERE books.id = " + bookId + ";";
 
 		BookDetailsInfo bookDetailsInfo = jdbcTemplate.queryForObject(sql, new BookDetailsInfoRowMapper());
 
@@ -108,25 +111,6 @@ public class BooksService {
 
 		jdbcTemplate.update(sql);
 
-	}
-
-	/**
-	 * 貸出書籍の情報取得
-	 * 
-	 * @param bookID 書籍ID
-	 * @return rentID 貸出書籍の書籍ID
-	 */
-	public int getRentInfo(int bookId) {
-		// SQL生成
-		String sql = "select book_id from rentals where book_id =" + bookId;
-
-		try {
-			int rentid = jdbcTemplate.queryForObject(sql, Integer.class);
-			return rentid;
-			// データがない時の例外処理
-		} catch (Exception e) {
-			return 0;
-		}
 	}
 
 }
