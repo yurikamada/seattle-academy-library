@@ -49,9 +49,13 @@ public class BooksService {
 	public BookDetailsInfo getBookInfo(int bookId) {
 
 		// JSPに渡すデータを設定する
-		String sql = "select books.id ,books.title ,books.author ,books.publisher ,books.publish_date ,books.thumbnail_url ,books.thumbnail_name ,"
-				+ "books.reg_date ,books.upd_date ,books.isbn ,books.explanatory_text ,rentals.book_id from books left join rentals "
-				+ "on books.id = rentals.book_id WHERE books.id = " + bookId + ";";
+		String sql = "select books.id ,books.title ,books.author ,books.publisher ,books.publish_date ,"
+				+ " books.thumbnail_url ,books.thumbnail_name ,books.reg_date ,books.upd_date ,"
+				+ " books.isbn ,books.explanatory_text ,rentals.book_id,"
+				+ " case when book_id > 0 then '貸出し中'"
+				+ " else '貸出し可'"
+				+ " end as status"
+				+ " from books left join rentals on books.id = rentals.book_id WHERE books.id = " + bookId + ";";
 
 		BookDetailsInfo bookDetailsInfo = jdbcTemplate.queryForObject(sql, new BookDetailsInfoRowMapper());
 
