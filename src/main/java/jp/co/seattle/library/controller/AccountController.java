@@ -63,8 +63,6 @@ public class AccountController {
 				return "login";
 			} else {
 				model.addAttribute("errorMessage", "パスワードが一致しません。");
-				userInfo.setPassword(password);
-				usersService.registUser(userInfo);
 				return "createAccount";
 			}
 
