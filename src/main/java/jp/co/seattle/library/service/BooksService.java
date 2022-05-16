@@ -51,10 +51,8 @@ public class BooksService {
 		// JSPに渡すデータを設定する
 		String sql = "select books.id ,books.title ,books.author ,books.publisher ,books.publish_date ,"
 				+ " books.thumbnail_url ,books.thumbnail_name ,books.reg_date ,books.upd_date ,"
-				+ " books.isbn ,books.explanatory_text ,rentals.book_id,"
-				+ " case when book_id > 0 then '貸出し中'"
-				+ " else '貸出し可'"
-				+ " end as status"
+				+ " books.isbn ,books.explanatory_text ,rentals.book_id," + " case when book_id > 0 then '貸出し中'"
+				+ " else '貸出し可'" + " end as status"
 				+ " from books left join rentals on books.id = rentals.book_id WHERE books.id = " + bookId + ";";
 
 		BookDetailsInfo bookDetailsInfo = jdbcTemplate.queryForObject(sql, new BookDetailsInfoRowMapper());
@@ -115,6 +113,33 @@ public class BooksService {
 
 		jdbcTemplate.update(sql);
 
+	}
+
+	/**
+	 * 書籍を部分一致で検索する
+	 *
+	 * @return 書籍リスト
+	 */
+	public List<BookInfo> searchBookList(String search) {
+		List<BookInfo> searchBookList = jdbcTemplate
+				.query("select id ,title ,author ,publisher ,publish_date ,thumbnail_url from books where title like '%"
+						+ search + "%'", new BookInfoRowMapper());
+
+		return searchBookList;
+	}
+
+	/**
+	 * 書籍を完全一致で検索する
+	 *
+	 * @return 書籍リスト
+	 */
+	public List<BookInfo> perfectsearchList(String search) {
+		List<BookInfo> perfectsearchList = jdbcTemplate.query(
+				"select title ,author ,publisher ,publish_date ,thumbnail_url ,thumbnail_name from books where title ='"+ search +"';",
+				new BookInfoRowMapper());
+		
+		return perfectsearchList;
+		
 	}
 
 }
