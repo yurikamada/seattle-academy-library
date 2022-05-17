@@ -18,6 +18,9 @@ input {
     vertical-align: top;
     margin-top: 28px;
 }
+.top{
+	 height: 90px;
+}
 
 .top-right {
     float: right;

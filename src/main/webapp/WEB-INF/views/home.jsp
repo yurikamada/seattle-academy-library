@@ -26,15 +26,15 @@
     </header>
     <main>
         <h1>Home</h1>
-        <a href="<%=request.getContextPath()%>/addBook" class="btn_add_book">書籍の追加</a> <a href="<%=request.getContextPath()%>/bulkBook" class="btn_bulk_book">一括登録</a>
-        <div style="float: right">
-            <form method="post" action="searchBook">
-                <input class=search1 type="search" name="search" placeholder="キーワードを入力">
-                <button class="btn_search">検索</button>
-                <p>
-                    <input type="radio" name="radiobtn" value="0" checked> を含む <input type="radio" name="radiobtn" value="1"> と一致する
-                </p>
-            </form>
+        <div class="top">
+            <a href="<%=request.getContextPath()%>/addBook" class="btn_add_book">書籍の追加</a> <a href="<%=request.getContextPath()%>/bulkBook" class="btn_bulk_book">一括登録</a>
+            <div style="float: right">
+                <form method="post" action="searchBook">
+                    <input class=search1 type="search" name="search" placeholder="キーワードを入力">
+                    <button class="btn_search">検索</button>
+                    <br> <input type="radio" name="radiobtn" value="0" checked> を含む <input type="radio" name="radiobtn" value="1"> と一致する
+                </form>
+            </div>
         </div>
         <div class="content_body">
             <c:if test="${!empty errorMessage_search}">
