@@ -32,19 +32,32 @@ public class SearchBookController {
 	 */
 	@Transactional
 	@RequestMapping(value = "/searchBook", method = RequestMethod.POST)
-	public String searchBook(Locale locale, @RequestParam("search") String search, Model model) {
+	public String searchBook(Locale locale, @RequestParam("search") String search,
+			@RequestParam("radiobtn") int radiobtn, Model model) {
 		logger.info("Welcome searchBook.java! The client locale is {}.", locale);
-		// 検索結果がない時
-		if (booksService.searchBookList(search).isEmpty()) {
-			model.addAttribute("errorMessage_search", "検索結果がありません。");
-			return "home";
-		// 検索結果がある時
+		// 完全一致「と一致する」を選択した時
+		if (radiobtn == 1) {
+			// 検索結果がない時
+			if (booksService.perfectsearchList(search).isEmpty()) {
+				model.addAttribute("errorMessage_search", "「" + search + "」と一致する検索結果がありません。");
+				return "home";
+				// 検索結果がある時
+			} else {
+				model.addAttribute("bookList", booksService.perfectsearchList(search));
+				return "home";
+			}
+			// 部分一致「を含む」を選択した時
 		} else {
-			model.addAttribute("bookList", booksService.searchBookList(search));
-			return "home";
-
+			// 検索結果がない時
+			if (booksService.searchBookList(search).isEmpty()) {
+				model.addAttribute("errorMessage_search", "「" + search + "」を含む検索結果がありません。");
+				return "home";
+				// 検索結果がある時
+			} else {
+				model.addAttribute("bookList", booksService.searchBookList(search));
+				return "home";
+			}
 		}
-
 	}
 
 }
