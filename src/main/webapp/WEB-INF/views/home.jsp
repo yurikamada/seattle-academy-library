@@ -32,7 +32,7 @@
                 <input class=search1 type="search" name="search" placeholder="キーワードを入力">
                 <button class="btn_search">検索</button>
                 <p>
-                    <input type="radio" name="radiobtn" value="0"> を含む <input type="radio" name="radiobtn" value="1"> と一致する
+                    <input type="radio" name="radiobtn" value="0" checked> を含む <input type="radio" name="radiobtn" value="1"> と一致する
                 </p>
             </form>
         </div>
