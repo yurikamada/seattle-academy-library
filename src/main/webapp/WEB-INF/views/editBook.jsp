@@ -42,20 +42,20 @@
                     </div>
                     <div class="content_right">
                         <div>
-                            <span>書籍名</span><span class="care care2">必須</span> <input type="text" name="title" value="${bookInfo.title}"> <input type="text" name="title" autocomplete="off">
+                            <span>書籍名</span><span class="care care2">必須</span> <input type="text" name="title" value="${bookInfo.title}">
                         </div>
                         <div>
-                            <span>著者名</span><span class="care care2">必須</span> <input type="text" name="author" value="${bookInfo.author}"> <input type="text" name="author" autocomplete="off">
+                            <span>著者名</span><span class="care care2">必須</span> <input type="text" name="author" value="${bookInfo.author}"> 
                         </div>
                         <div>
-                            <span>出版社</span><span class="care care2">必須</span> <input type="text" name="publisher" value="${bookInfo.publisher}"> <input type="text" name="publisher">
+                            <span>出版社</span><span class="care care2">必須</span> <input type="text" name="publisher" value="${bookInfo.publisher}"> 
                         </div>
                         <div>
-                            <span>出版日</span><span class="care care2">必須</span> <input type="text" name="publishDate" value="${bookInfo.publishDate}"> <input type="text" name="publishDate">
+                            <span>出版日</span><span class="care care2">必須</span> <input type="text" name="publishDate" value="${bookInfo.publishDate}"> 
                             <div>
-                                <span>ISBN</span><span class="care care1">任意</span> <input type="text" name="isbn" value="${bookInfo.isbn}"> <input type="text" name="isbn">
+                                <span>ISBN</span><span class="care care1">任意</span> <input type="text" name="isbn" value="${bookInfo.isbn}"> 
                                 <div>
-                                    <span>説明文</span><span class="care care1">任意</span> <input type="text" name="explanatory_text" value="${bookInfo.explanatory_text}"> <input type="text" name="explanatory_text">
+                                    <span>説明文</span><span class="care care1">任意</span> <input type="text" name="explanatory_text" value="${bookInfo.explanatory_text}"> 
                                 </div>
                             </div>
                         </div>

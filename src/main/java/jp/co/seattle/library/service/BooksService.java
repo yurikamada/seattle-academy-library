@@ -135,7 +135,7 @@ public class BooksService {
 	 */
 	public List<BookInfo> perfectsearchList(String search) {
 		List<BookInfo> perfectsearchList = jdbcTemplate.query(
-				"select title ,author ,publisher ,publish_date ,thumbnail_url ,thumbnail_name from books where title ='"+ search +"';",
+				"select id ,title ,author ,publisher ,publish_date ,thumbnail_url from books where title ='"+ search +"';",
 				new BookInfoRowMapper());
 		
 		return perfectsearchList;
