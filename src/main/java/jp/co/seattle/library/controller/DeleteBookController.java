@@ -40,9 +40,11 @@ public class DeleteBookController {
 	@RequestMapping(value = "/deleteBook", method = RequestMethod.POST)
 	public String deleteBook(Locale locale, @RequestParam("bookId") Integer bookId, Model model) {
 		logger.info("Welcome delete! The client locale is {}.", locale);
+		boolean checkout_date = rentalsService.getRentInfo(bookId);
 		// 対象書籍が貸出されていない時
-		if (rentalsService.getRentInfo(bookId) == 0) {
+		if (checkout_date) {
 			booksService.deleteBook(bookId);
+			booksService.deleteBook_rental(bookId);
 			// 本の情報を取得して画面側に渡す
 			model.addAttribute("bookList", booksService.getBookList());
 			return "home";

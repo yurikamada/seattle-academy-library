@@ -31,12 +31,13 @@ public class ReturnBookController {
 	 * @param model  モデル情報
 	 */
 	@RequestMapping(value = "/returnBook", method = RequestMethod.POST)
-	public String returnsbook(Locale locale, @RequestParam("bookId") int bookId, Model model) {
+	public String returnbook(Locale locale, @RequestParam("bookId") int bookId, Model model) {
 		logger.info("Welcome return! The client locale is {}.", locale);
-
-		if (rentalsService.getRentInfo(bookId) == 0) {
+		boolean checkout_date = rentalsService.getRentInfo(bookId);
+		if (checkout_date) {
 			model.addAttribute("errorMessage_rent_return", "貸出しされていません。");
-		} else {
+		} 
+		else {
 			rentalsService.returnBook(bookId);
 		}
 

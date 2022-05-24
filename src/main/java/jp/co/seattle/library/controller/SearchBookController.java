@@ -27,7 +27,8 @@ public class SearchBookController {
 	/**
 	 * 書籍情報を検索する
 	 * 
-	 * @param search 検索キーワード
+	 * @param search   検索キーワード
+	 * @param radiobtn ラジオボタン
 	 * @return
 	 */
 	@Transactional
@@ -40,24 +41,20 @@ public class SearchBookController {
 			// 検索結果がない時
 			if (booksService.perfectsearchList(search).isEmpty()) {
 				model.addAttribute("errorMessage_search", "「" + search + "」と一致する検索結果がありません。");
-				return "home";
 				// 検索結果がある時
 			} else {
 				model.addAttribute("bookList", booksService.perfectsearchList(search));
-				return "home";
 			}
 			// 部分一致「を含む」を選択した時
 		} else {
 			// 検索結果がない時
 			if (booksService.searchBookList(search).isEmpty()) {
 				model.addAttribute("errorMessage_search", "「" + search + "」を含む検索結果がありません。");
-				return "home";
 				// 検索結果がある時
 			} else {
 				model.addAttribute("bookList", booksService.searchBookList(search));
-				return "home";
 			}
 		}
+		return "home";
 	}
-
 }

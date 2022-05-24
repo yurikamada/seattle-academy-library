@@ -43,7 +43,6 @@ public class BooksService {
 	 * 書籍IDに紐づく書籍詳細情報を取得する
 	 *
 	 * @param bookId 書籍ID
-	 * @param rentId 貸出書籍のID
 	 * @return 書籍情報
 	 */
 	public BookDetailsInfo getBookInfo(int bookId) {
@@ -51,7 +50,7 @@ public class BooksService {
 		// JSPに渡すデータを設定する
 		String sql = "select books.id ,books.title ,books.author ,books.publisher ,books.publish_date ,"
 				+ " books.thumbnail_url ,books.thumbnail_name ,books.reg_date ,books.upd_date ,"
-				+ " books.isbn ,books.explanatory_text ,rentals.book_id," + " case when book_id > 0 then '貸出し中'"
+				+ " books.isbn ,books.explanatory_text ,rentals.book_id," + " case when checkout_date is not null then '貸出し中'"
 				+ " else '貸出し可'" + " end as status"
 				+ " from books left join rentals on books.id = rentals.book_id WHERE books.id = " + bookId + ";";
 
@@ -87,6 +86,12 @@ public class BooksService {
 		String sql = "DELETE FROM books WHERE id = " + bookId + ";";
 		jdbcTemplate.update(sql);
 	}
+	
+	public void deleteBook_rental(Integer bookId) {
+		String sql = "DELETE FROM rentals WHERE book_id =" + bookId +";";
+		jdbcTemplate.update(sql);
+	}
+	
 
 	/**
 	 * 最新の書籍IDを取得する
