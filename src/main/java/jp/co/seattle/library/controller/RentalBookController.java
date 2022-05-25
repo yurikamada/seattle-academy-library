@@ -33,11 +33,13 @@ public class RentalBookController {
 	@RequestMapping(value = "/rentalBook", method = RequestMethod.POST)
 	public String rentalsbook(Locale locale, @RequestParam("bookId") int bookId, Model model) {
 		logger.info("Welcome rental! The client locale is {}.", locale);
-
+//		rentalsService.rentalsbook(bookId);
+		boolean checkout_date = rentalsService.getRentInfo(bookId);
 		// 書籍IDチェック
-		if (rentalsService.getRentInfo(bookId) == 0) {
-			rentalsService.rentalsbook(bookId);
-		} else {
+		if (checkout_date){
+			rentalsService.rentalsAgainBook(bookId);
+		} 
+		else {
 			model.addAttribute("errorMessage_rent_return", "貸出し済みです。");
 		}
 
